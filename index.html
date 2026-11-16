@@ -7,9 +7,9 @@
 <meta name="description" content="Depilação com cera ou máquina, para homens e mulheres, e massagens relaxante e tântrica com a Palloma Araújo, na Rua Tavares Cavalcante, 370, Campina Grande, PB. Agende pelo WhatsApp.">
 <meta name="theme-color" content="#2A1822">
 <link rel="canonical" href="https://palloma-depill.vercel.app/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -116,12 +116,23 @@ h1 em,h2 em,h3 em{font-style:italic;color:var(--malva)}
 .nav.open .menu-btn span::after{transform:translateY(-7px) rotate(-45deg)}
 
 /* Intro */
-.intro{position:fixed;inset:0;z-index:90;background:var(--ameixa);display:flex;align-items:center;justify-content:center;transition:transform 1s var(--ease) .15s}
-.intro svg{width:64px;height:64px;opacity:0;animation:introLogo 1s var(--ease) forwards}
-.intro.done{transform:translateY(-100%)}
-.intro{animation:introFailsafe 0s linear 3.2s forwards}
-@keyframes introFailsafe{to{visibility:hidden}}
-@keyframes introLogo{to{opacity:1}}
+.intro{position:fixed;inset:0;z-index:90;background:radial-gradient(ellipse at 50% 45%,#3A2230 0%,var(--ameixa) 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity 1.1s ease,filter 1.1s ease,visibility 0s linear 1.1s}
+.intro svg{width:84px;height:84px;overflow:visible}
+.intro .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:introDraw 1.5s cubic-bezier(.65,0,.35,1) .15s forwards}
+.intro .draw:nth-child(2),.intro .draw:nth-child(3){animation-delay:.35s}
+.intro .draw:nth-child(4),.intro .draw:nth-child(5){animation-delay:.55s}
+.intro .draw:nth-child(6){animation-delay:.8s}
+.intro .name{font-family:var(--serif);color:var(--off);font-size:26px;letter-spacing:.42em;padding-left:.42em;opacity:0;animation:introName 1.2s var(--ease) 1s forwards}
+.intro .name i{color:var(--champanhe)}
+.intro .tag{font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(235,207,211,.7);opacity:0;animation:introName 1s var(--ease) 1.35s forwards}
+.intro .rule{width:0;height:1px;background:var(--champanhe);opacity:.7;animation:introRule 1.2s var(--ease) 1.2s forwards}
+.intro.done{opacity:0;filter:blur(6px);visibility:hidden;pointer-events:none}
+.intro{animation:introFailsafe 0s linear 5s forwards}
+@keyframes introFailsafe{to{visibility:hidden;opacity:0}}
+@keyframes introDraw{to{stroke-dashoffset:0}}
+@keyframes introName{from{opacity:0;letter-spacing:.6em}to{opacity:1;letter-spacing:.42em}}
+@keyframes introRule{to{width:90px}}
+@media (max-width:600px){.intro .name{font-size:20px}.intro svg{width:68px;height:68px}}
 
 /* Fluxo de fundo continuo */
 section{position:relative}
@@ -361,13 +372,16 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
 <div class="intro" aria-hidden="true">
-  <svg viewBox="0 0 64 64"><path d="M32 50c-9-6-15-14-15-24 6 2 11 6 15 12 4-6 9-10 15-12 0 10-6 18-15 24z" fill="none" stroke="#C9A57A" stroke-width="2" stroke-linejoin="round"/><path d="M32 38c-3-6-3-14 0-22 3 8 3 16 0 22z" fill="#EBCFD3"/></svg>
+  <svg viewBox="0 0 64 64"><g fill="none" stroke="#C9A57A" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"><path class="draw" pathLength="1" d="M32 9C39.5 17.5 41 30 32 42C23 30 24.5 17.5 32 9Z"/><path class="draw" pathLength="1" d="M32 42C33.5 31 38 23 47 19C47.5 30 42 38 32 42Z"/><path class="draw" pathLength="1" d="M32 42C30.5 31 26 23 17 19C16.5 30 22 38 32 42Z"/><path class="draw" pathLength="1" d="M32 43.5C40 39 48 34 59 33C55 41 45 45.5 32 43.5Z"/><path class="draw" pathLength="1" d="M32 43.5C24 39 16 34 5 33C9 41 19 45.5 32 43.5Z"/><path class="draw" pathLength="1" d="M17 47.5C26 51 38 51 47 47.5"/></g></svg>
+  <div class="name">PALLOMA <i>DEPILL</i></div>
+  <div class="rule"></div>
+  <div class="tag">Depilação e massagem</div>
 </div>
 
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#inicio" class="logo" aria-label="Palloma Depill, voltar ao início">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50c-9-6-15-14-15-24 6 2 11 6 15 12 4-6 9-10 15-12 0 10-6 18-15 24z" fill="none" stroke="#C9A57A" stroke-width="2.4" stroke-linejoin="round"/><path d="M32 38c-3-6-3-14 0-22 3 8 3 16 0 22z" fill="#EBCFD3"/></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#C9A57A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M32 9C39.5 17.5 41 30 32 42C23 30 24.5 17.5 32 9Z"/><path d="M32 42C33.5 31 38 23 47 19C47.5 30 42 38 32 42Z"/><path d="M32 42C30.5 31 26 23 17 19C16.5 30 22 38 32 42Z"/><path d="M32 43.5C40 39 48 34 59 33C55 41 45 45.5 32 43.5Z"/><path d="M32 43.5C24 39 16 34 5 33C9 41 19 45.5 32 43.5Z"/><path d="M17 47.5C26 51 38 51 47 47.5"/></g></svg>
       <span>Palloma <i>Depill</i></span>
     </a>
     <nav aria-label="Menu principal">
@@ -455,7 +469,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
           </div>
         </a>
         <a class="panel massagem" href="#valores" data-tab-target="massagem">
-          <svg class="lotus" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50c-9-6-15-14-15-24 6 2 11 6 15 12 4-6 9-10 15-12 0 10-6 18-15 24z" fill="none" stroke="#C9A57A" stroke-width=".8"/><path d="M32 38c-3-6-3-14 0-22 3 8 3 16 0 22z" fill="none" stroke="#EBCFD3" stroke-width=".8"/></svg>
+          <svg class="lotus" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#C9A57A" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round"><path d="M32 9C39.5 17.5 41 30 32 42C23 30 24.5 17.5 32 9Z"/><path d="M32 42C33.5 31 38 23 47 19C47.5 30 42 38 32 42Z"/><path d="M32 42C30.5 31 26 23 17 19C16.5 30 22 38 32 42Z"/><path d="M32 43.5C40 39 48 34 59 33C55 41 45 45.5 32 43.5Z"/><path d="M32 43.5C24 39 16 34 5 33C9 41 19 45.5 32 43.5Z"/><path d="M17 47.5C26 51 38 51 47 47.5"/></g></svg>
           <div class="in-panel">
             <h3><em>Massagens</em></h3>
             <p>Relaxante, para aliviar dores e tensão muscular depois do treino ou do trabalho. Tântrica, para relaxamento profundo e consciência corporal, sempre com limites combinados antes.</p>
@@ -656,7 +670,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
 
   <!-- CHAMADA FINAL -->
   <section class="final on-dark" data-bg="dark" data-from="light">
-    <svg class="lotus-bg" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 50c-9-6-15-14-15-24 6 2 11 6 15 12 4-6 9-10 15-12 0 10-6 18-15 24z" fill="none" stroke="#C9A57A" stroke-width=".5"/><path d="M32 38c-3-6-3-14 0-22 3 8 3 16 0 22z" fill="none" stroke="#EBCFD3" stroke-width=".5"/></svg>
+    <svg class="lotus-bg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#C9A57A" stroke-width="0.38" stroke-linejoin="round" stroke-linecap="round"><path d="M32 9C39.5 17.5 41 30 32 42C23 30 24.5 17.5 32 9Z"/><path d="M32 42C33.5 31 38 23 47 19C47.5 30 42 38 32 42Z"/><path d="M32 42C30.5 31 26 23 17 19C16.5 30 22 38 32 42Z"/><path d="M32 43.5C40 39 48 34 59 33C55 41 45 45.5 32 43.5Z"/><path d="M32 43.5C24 39 16 34 5 33C9 41 19 45.5 32 43.5Z"/><path d="M17 47.5C26 51 38 51 47 47.5"/></g></svg>
     <div class="wrap">
       <div>
         <h2 class="h-xl words" data-words>Sua próxima sessão começa com <em>uma mensagem.</em></h2>
@@ -674,7 +688,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
   <div class="wrap">
     <div>
       <a href="#inicio" class="logo" aria-label="Palloma Depill">
-        <svg viewBox="0 0 64 64" aria-hidden="true" width="34" height="34"><path d="M32 50c-9-6-15-14-15-24 6 2 11 6 15 12 4-6 9-10 15-12 0 10-6 18-15 24z" fill="none" stroke="#C9A57A" stroke-width="2.4" stroke-linejoin="round"/><path d="M32 38c-3-6-3-14 0-22 3 8 3 16 0 22z" fill="#EBCFD3"/></svg>
+        <svg viewBox="0 0 64 64" aria-hidden="true" width="34" height="34"><g fill="none" stroke="#C9A57A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M32 9C39.5 17.5 41 30 32 42C23 30 24.5 17.5 32 9Z"/><path d="M32 42C33.5 31 38 23 47 19C47.5 30 42 38 32 42Z"/><path d="M32 42C30.5 31 26 23 17 19C16.5 30 22 38 32 42Z"/><path d="M32 43.5C40 39 48 34 59 33C55 41 45 45.5 32 43.5Z"/><path d="M32 43.5C24 39 16 34 5 33C9 41 19 45.5 32 43.5Z"/><path d="M17 47.5C26 51 38 51 47 47.5"/></g></svg>
         <span>Palloma <i>Depill</i></span>
       </a>
       <p>Depilação masculina e feminina, massagem relaxante e massagem tântrica em Campina Grande.</p>
@@ -704,8 +718,8 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
 
   /* Intro curta */
   var intro = document.querySelector('.intro');
-  function endIntro(){ if(intro){ intro.classList.add('done'); setTimeout(function(){ intro.remove(); }, 1300); } document.querySelectorAll('.hero [data-words], .hero .fade, .hero [data-reveal]').forEach(function(el){ el.classList.add('in'); }); }
-  if (reduce) { endIntro(); } else { window.addEventListener('load', function(){ setTimeout(endIntro, 650); }); setTimeout(endIntro, 2500); }
+  function endIntro(){ if(endIntro.ran) return; endIntro.ran=1; if(intro){ intro.classList.add('done'); setTimeout(function(){ intro.remove(); }, 1300); } document.querySelectorAll('.hero [data-words], .hero .fade, .hero [data-reveal]').forEach(function(el){ el.classList.add('in'); }); }
+  if (reduce) { endIntro(); } else { var t0=Date.now(); window.addEventListener('load', function(){ setTimeout(endIntro, Math.max(0, 2700-(Date.now()-t0))); }); setTimeout(endIntro, 4200); }
 
   /* Quebra titulos em palavras */
   document.querySelectorAll('[data-words]').forEach(function(el){
