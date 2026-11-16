@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://palloma-depill.vercel.app/sitemap.xml
