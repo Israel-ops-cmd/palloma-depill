@@ -22,8 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="/img/palloma-retrato.webp" media="(min-width: 761px)">
-<link rel="preload" as="image" href="/img/palloma-retrato-mobile.webp" media="(max-width: 760px)">
+<link rel="preload" as="image" href="/img/palloma-retrato-recorte.webp">
 
 <script type="application/ld+json">
 {
@@ -151,11 +150,14 @@ section > .wrap{position:relative;z-index:1}
 .hero-facts div{display:flex;flex-direction:column}
 .hero-facts b{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1;color:var(--champanhe)}
 .hero-facts span{font-size:13px;color:rgba(247,241,236,.7);margin-top:6px}
-.hero-photo{position:relative;justify-self:end;width:100%;max-width:520px}
-.hero-photo .frame{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:240px 240px 6px 6px}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;transform:scale(1.12);transition:transform 1.8s var(--ease)}
-.hero-photo .line{position:absolute;inset:-14px -14px auto auto;width:100%;height:100%;border:1px solid rgba(201,165,122,.55);border-radius:240px 240px 6px 6px;pointer-events:none}
-.hero-photo .tag{position:absolute;left:-28px;bottom:42px;background:var(--off);color:var(--ameixa);padding:16px 20px;border-radius:4px;font-size:13px;line-height:1.45;max-width:210px;box-shadow:0 24px 50px -24px rgba(0,0,0,.5)}
+.hero-photo{position:relative;justify-self:end;width:100%;max-width:580px}
+.cutout{position:relative;width:100%;aspect-ratio:var(--ar)}
+.cutout .arch{position:absolute;left:0;right:0;bottom:0;top:var(--top);border-radius:300px 300px 6px 6px;background:var(--arch)}
+.cutout .line{position:absolute;left:16px;right:-16px;bottom:-16px;top:calc(var(--top) + 16px);border:1px solid rgba(201,165,122,.6);border-radius:300px 300px 6px 6px;pointer-events:none}
+.cutout .clip{position:absolute;inset:0;clip-path:inset(-30% 0 0 0 round 0 0 6px 6px)}
+.cutout img{position:absolute;bottom:0;left:var(--x);width:var(--w);max-width:none;height:auto}
+.hero-photo .cutout{--ar:1/.9;--top:32%;--x:0%;--w:100%;--arch:radial-gradient(circle at 50% 30%,#9b5c7d 0%,#5a2f47 55%,#3A2230 100%)}
+.hero-photo .tag{position:absolute;left:-36px;bottom:-34px;background:var(--off);color:var(--ameixa);padding:16px 20px;border-radius:4px;font-size:13px;line-height:1.45;max-width:210px;box-shadow:0 24px 50px -24px rgba(0,0,0,.5)}
 .hero-photo .tag b{display:block;font-family:var(--serif);font-size:19px;font-weight:500}
 
 /* Revelacoes */
@@ -257,8 +259,8 @@ section > .wrap{position:relative;z-index:1}
 .about{padding:clamp(100px,12vw,160px) 0}
 .about .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,7vw,110px);align-items:center}
 .about .photo{position:relative}
-.about .photo .frame{aspect-ratio:4/5;overflow:hidden;border-radius:6px}
-.about .photo img{width:100%;height:100%;object-fit:cover;object-position:35% 40%;transform:scale(1.1);transition:transform 1.8s var(--ease)}
+.about .photo .cutout{--ar:4/5;--top:36%;--x:0%;--w:100%;--arch:linear-gradient(160deg,#c995ab 0%,#8C4E70 100%)}
+.about .photo .cutout .line{border-color:rgba(140,78,112,.45)}
 .about .photo .sig{position:absolute;right:-18px;bottom:-22px;font-family:var(--serif);font-style:italic;font-size:38px;color:var(--malva);background:var(--rose);padding:4px 18px;border-radius:4px}
 .about .lead{margin:28px 0 0;max-width:52ch}
 .about ul{list-style:none;padding:0;margin:34px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
@@ -317,8 +319,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
   .nav.open ul{box-shadow:0 30px 40px -20px rgba(0,0,0,.6)}
   .hero .wrap,.prices .grid,.results .grid,.about .grid,.local .grid,.final .wrap{grid-template-columns:1fr}
   .hero{padding-top:104px}
-  .hero-photo{justify-self:start;max-width:440px;order:-1}
-  .hero-photo .frame{aspect-ratio:5/4;border-radius:200px 200px 6px 6px}
+  .hero-photo{justify-self:start;max-width:340px;order:-1;margin-top:24px}
   .hero-photo .tag{left:auto;right:12px;bottom:-24px}
   .hero h1{margin-top:18px}
   .sec-head{grid-template-columns:1fr}
@@ -352,7 +353,6 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .mask{clip-path:none}
   .words .w > span,.fade{transform:none;opacity:1}
-  .hero-photo img,.about .photo img{transform:none}
   .intro{display:none}
 }
 </style>
@@ -410,12 +410,12 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
         </div>
       </div>
       <div class="hero-photo">
-        <div class="line" aria-hidden="true"></div>
-        <div class="frame mask" data-reveal>
-          <picture>
-            <source media="(max-width: 760px)" srcset="/img/palloma-retrato-mobile.webp">
-            <img src="/img/palloma-retrato.webp" width="1320" height="841" alt="Palloma Araújo, depiladora da Palloma Depill, com maquiagem de estúdio" fetchpriority="high">
-          </picture>
+        <div class="cutout">
+          <div class="arch" aria-hidden="true"></div>
+          <div class="line" aria-hidden="true"></div>
+          <div class="clip fade">
+            <img src="/img/palloma-retrato-recorte.webp" width="547" height="392" alt="Palloma Araújo, depiladora da Palloma Depill, com maquiagem de estúdio" fetchpriority="high">
+          </div>
         </div>
         <div class="tag"><b>Palloma Araújo</b>Depiladora e massoterapeuta em Campina Grande</div>
       </div>
@@ -605,8 +605,12 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(247,241,236,.12);padding
   <section class="about" id="sobre" data-bg="rose" data-from="light">
     <div class="wrap grid">
       <div class="photo">
-        <div class="frame mask" data-reveal>
-          <img src="/img/palloma-sobre.webp" width="800" height="842" alt="Palloma Araújo sorrindo" loading="lazy">
+        <div class="cutout">
+          <div class="arch" aria-hidden="true"></div>
+          <div class="line" aria-hidden="true"></div>
+          <div class="clip fade">
+            <img src="/img/palloma-sobre-recorte.webp" width="463" height="454" alt="Palloma Araújo sorrindo" loading="lazy">
+          </div>
         </div>
         <span class="sig" aria-hidden="true">Palloma</span>
       </div>
